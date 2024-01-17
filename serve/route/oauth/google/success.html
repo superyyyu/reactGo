@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <title>授权成功</title>
+  <meta name="color-scheme" content="dark light">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/bulma-prefers-dark" />
+</head>
+
+<body>
+  <section class="hero is-fullheight is-align-items-center">
+    <div class="box mt-6 mb-0 px-5 py-6 container" style="width: 500px;">
+      <div class="mt-6 is-flex is-flex-direction-row is-justify-content-center">
+        <figure class="image is-64x64 mr-5">
+          <img class="is-rounded" src="{{ .avatar }}">
+        </figure>
+        <figure class="image is-64x64">
+          <img class="is-rounded" src="/logo192.png">
+        </figure>
+      </div>
+      <p class="is-size-5 has-text-centered mt-6">授权完成</p>
+    </div>
+
+    <nav class="level is-mobile my-5" style="width: 480px;">
+      <div class="level-left">
+        <div class="level-item">
+          <img src="/banner.png" style="width: 96px; object-fit: contain;" />
+        </div>
+      </div>
+      <div class="level-right">
+        <p class="level-item is-size-7">
+          <a href="/terms" target="_blank">服务条款</a>
+        </p>
+        <p class="level-item is-size-7">
+          <a href="/privacy" target="_blank">隐私政策</a>
+        </p>
+      </div>
+    </nav>
+  </section>
+
+  <script>
+    (function () {
+      var message = {
+        source: 'reactgo-google-authorize',
+        profile: {
+          userid: '{{ .userid }}',
+          email: '{{ .email }}',
+          name: '{{ .name }}',
+          avatar: '{{ .avatar }}',
+        },
+        state: '{{ .state }}',
+      }
+      var target = '{{ .target }}';
+
+      setTimeout(() => {
+        window.opener.postMessage(message, target);
+      }, 500);
+    })();
+  </script>
+</body>
+
+</html>
